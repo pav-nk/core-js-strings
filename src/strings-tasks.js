@@ -188,8 +188,12 @@ function removeLastOccurrences(str, value) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+function sumOfCodes(str) {
+  if (!str) return 0;
+  return str
+    .split('')
+    .map((item) => item.charCodeAt(0))
+    .reduce((acc, el) => acc + el);
 }
 
 /**
@@ -298,8 +302,28 @@ function containsSubstring(str, substring) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const dictionary = [
+    'a',
+    'e',
+    'i',
+    'o',
+    'u',
+    'y',
+    'A',
+    'E',
+    'I',
+    'O',
+    'U',
+    'Y',
+  ];
+  return str.split('').reduce((acc, el) => {
+    if (dictionary.includes(el)) {
+      const newAcc = acc + 1;
+      return newAcc;
+    }
+    return acc;
+  }, 0);
 }
 
 /**
@@ -331,8 +355,11 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  return sentence.split(' ').reduce((acc, word) => {
+    if (acc.length < word.length) return word;
+    return acc;
+  }, '');
 }
 
 /**
@@ -363,8 +390,13 @@ function reverseWords(str) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  return str
+    .split('')
+    .map((el) =>
+      el.toLowerCase() === el ? el.toUpperCase() : el.toLowerCase()
+    )
+    .join('');
 }
 
 /**
